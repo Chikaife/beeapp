@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="dashboard.css">
+    <script src="beeapp.js" defer></script>
+    <title>beeapp Dashboard</title>
+</head>
+<body>
+    <main class="dashboard-shell">
+        <header class="topbar">
+            <div class="brand-mark">beeapp</div>
+            <nav aria-label="Dashboard navigation">
+                <a href="#services">Services</a>
+                <a href="#transactions">Activity</a>
+                <button class="profile-button"  data-lucide="user"></button>
+            </nav>
+        </header>
+
+        <section class="greetings">
+            <div>
+                <h3>Welcome back,</h3>
+                <h2>Anyim Chidi</h2>
+            </div>
+            <div class="time-date">
+                <p class="time-stamp"></p>
+                <p class="date-stamp"></p>
+            </div>
+        </section>
+
+        <section class="balance-card" aria-labelledby="balance-title">
+            <div class="balance-head">
+                <div>
+                    <h3 id="balance-title">Wallet balance</h3>
+                    <p class="balance-amount">₦ 3,344,984.56</p>
+                    <span class="beetag">beetag: @anyimchidi</span>
+                </div>
+            </div>
+            <div class="balance-footer" id="funds">
+                <button id="add-funds-button" type="button">+ Add funds</button>
+                <button id="add-funds-button" type="button">- Withdraw funds</button>
+                <button id="gift-user-button" type="button">Gift a user</button>
+            </div>
+        </section>
+
+        <div class="dashboard-grid">
+            <section id="services" class="services-section" aria-labelledby="services-title">
+                <div class="section-heading">
+                    <h3 id="services-title">Everyday services</h3>
+                    <a href="#services">View all</a>
+                </div>
+                <div class="services-grid">
+                    <div class="service-tile">
+                        <span class="service-icon" data-lucide="phone"></span>
+                <p>Airtime</p>
+            </div>
+                    <div class="service-tile">
+                        <span class="service-icon" data-lucide="credit-card"></span>
+                <p>Pay Bills</p>
+            </div>
+                    <div class="service-tile">
+                        <span class="service-icon" data-lucide="wifi"></span>
+                <p>Data</p>
+            </div>
+                    <div class="service-tile">
+                        <span class="service-icon" data-lucide="plane"></span>
+                <p>Flights</p>
+            </div>
+                    <div class="service-tile">
+                        <span class="service-icon" data-lucide="gift"></span>
+                <p>Gift Cards</p>
+            </div>
+                    <div class="service-tile">
+                        <span class="service-icon" data-lucide="spade"></span>
+                <p>Betting</p>
+            </div>
+                </div>
+            </section>
+
+            <section id="transactions" class="transactions" aria-labelledby="transactions-title">
+                <h3 id="transactions-title">Recent transactions</h3>
+                <ul class="transaction-list">
+                    <li class="transaction-item">
+                        <span class="transaction-icon">+</span>
+                        <div class="transaction-copy">
+                            <strong>Wallet Deposit</strong>
+                            <span>Aug 19 · Bank transfer</span>
+                        </div>
+                        <strong class="transaction-amount">+₦3,000,000</strong>
+                    </li>
+                    <li class="transaction-item">
+                        <span class="transaction-icon">-</span>
+                        <div class="transaction-copy">
+                            <strong>Funded Sportybet</strong>
+                            <span>Aug 17 · beeapp</span>
+                        </div>
+                        <strong class="transaction-amount">-₦10,000</strong>
+                    </li>
+                    <li class="transaction-item">
+                        <span class="transaction-icon">-</span>
+                        <div class="transaction-copy">
+                            <strong>Airtel Airtime</strong>
+                            <span>Aug 4 · beeapp</span>
+                        </div>
+                        <strong class="transaction-amount">-₦7,000</strong>
+                    </li>
+                    <li class="transaction-item">
+                        <span class="transaction-icon">+</span>
+                        <div class="transaction-copy">
+                            <strong>Wallet Withdrawal</strong>
+                            <span>Aug 1 · USDT</span>
+                        </div>
+                        <strong class="transaction-amount">-₦1,000,000</strong>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+    </main>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+
+</body>
+</html>
