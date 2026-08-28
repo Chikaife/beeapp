@@ -30,6 +30,21 @@ body {
 	padding: 28px 0 42px;
 }
 
+.username-btn {
+	margin-top: 30px;
+	width: 100;
+	border: none;
+	border-radius: 999px;
+	padding: 14px 18px;
+	background: linear-gradient(135deg, #ff8c3d 0%, #ffbf78 100%);
+	color: #fff;
+	font-weight: 700;
+	font-size: 1rem;
+	cursor: pointer;
+	box-shadow: 0 16px 24px rgba(255, 140, 61, 0.24);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
 .topbar,
 .greetings,
 .section-heading,
