@@ -2,7 +2,7 @@ let firstName = document.querySelector("#firstname")
 let lastName = document.querySelector("#lastname")
 let Email = document.querySelector("#email")
 let user = document.querySelector(".username-btn")
-let port = document.querySelector("#user-name")
+let ports = document.querySelectorAll(".user-name")
 
 // login page
 if (Email) {
@@ -28,28 +28,38 @@ if (firstName && lastName) {
 
 
 // dashboard
-if (user && port) {
+if (user && ports.length > 0) {
     function showname() {
         let AccessType = localStorage.getItem("AccessType")
 
-        if (port.textContent === "") {
+        if (ports[0].textContent === "") {
 
             if (AccessType === "signup") {
                 let savedFName = localStorage.getItem("firstName")
                 let savedLName = localStorage.getItem("lastName")
 
-                port.textContent = savedFName + " " + savedLName
+                ports.forEach(function (port) {
+                    port.textContent = savedFName + " " + savedLName
+                })
+
                 user.textContent = "Hide name"
 
             } else if (AccessType === "login") {
                 let savedEmail = localStorage.getItem("Email")
 
-                port.textContent = savedEmail
+                ports.forEach(function (port) {
+                    port.textContent = savedEmail
+                })
+
                 user.textContent = "Hide name"
             }
 
         } else {
-            port.textContent = ""
+
+            ports.forEach(function (port) {
+                port.textContent = ""
+            })
+
             user.textContent = "Show name"
         }
     }
