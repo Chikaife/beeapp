@@ -1,3 +1,61 @@
+let firstName = document.querySelector("#firstname")
+let lastName = document.querySelector("#lastname")
+let Email = document.querySelector("#email")
+let user = document.querySelector(".username-btn")
+let port = document.querySelector("#user-name")
+
+// login page
+if (Email) {
+    let login = document.querySelector(".btn-primary")
+
+    login.addEventListener("click", function () {
+        localStorage.setItem("Email", Email.value)
+        localStorage.setItem("AccessType", "login")
+    })
+}
+
+
+// signup page
+if (firstName && lastName) {
+    let signUp = document.querySelector(".btn-primary")
+
+    signUp.addEventListener("click", function () {
+        localStorage.setItem("firstName", firstName.value)
+        localStorage.setItem("lastName", lastName.value)
+        localStorage.setItem("AccessType", "signup")
+    })
+}
+
+
+// dashboard
+if (user && port) {
+    function showname() {
+        let AccessType = localStorage.getItem("AccessType")
+
+        if (port.textContent === "") {
+
+            if (AccessType === "signup") {
+                let savedFName = localStorage.getItem("firstName")
+                let savedLName = localStorage.getItem("lastName")
+
+                port.textContent = savedFName + " " + savedLName
+                user.textContent = "Hide name"
+
+            } else if (AccessType === "login") {
+                let savedEmail = localStorage.getItem("Email")
+
+                port.textContent = savedEmail
+                user.textContent = "Hide name"
+            }
+
+        } else {
+            port.textContent = ""
+            user.textContent = "Show name"
+        }
+    }
+}
+// //////////////////////////////////////
+
 const transactionAmounts = document.querySelectorAll('.transaction-amount');
 
 transactionAmounts.forEach(transactionAmount => {
