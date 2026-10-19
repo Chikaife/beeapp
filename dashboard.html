@@ -10,11 +10,11 @@
 <body>
     <main class="dashboard-shell">
         <header class="topbar">
-            <div class="brand-mark">beeapp</div>
+            <a class="brand-mark" href="dashboard.html">beeapp</a>
             <nav aria-label="Dashboard navigation">
                 <a href="#services">Services</a>
                 <a href="#transactions">Activity</a>
-                <button class="profile-button"  data-lucide="user"></button>
+                <button class="profile-button" type="button" aria-label="Show or hide your name" data-lucide="user"></button>
             </nav>
         </header>
 
@@ -22,9 +22,13 @@
             <div>
                 <h3>Welcome back,</h3>
                 <h2 class="user-name"></h2>
-                <button class="username-btn" onclick="showname()">Show name</button>
+                <button class="username-btn" type="button">Show name</button>
             </div>
-            <div class="time-date">
+            <div class="time-date" aria-label="Current local time and date">
+                <div class="clock-heading">
+                    <span class="clock-icon" data-lucide="clock-3" aria-hidden="true"></span>
+                    <span>Local time</span>
+                </div>
                 <p class="time-stamp"></p>
                 <p class="date-stamp"></p>
             </div>
@@ -34,14 +38,14 @@
             <div class="balance-head">
                 <div>
                     <h3 id="balance-title">Wallet balance</h3>
-                    <p class="balance-amount">₦ 37,344,984.56</p>
+                    <p class="balance-amount" data-wallet-balance>₦ 39,344,984.56</p>
                     <span class="beetag">beetag: <span class="user-name"></span></span>
                 </div>
             </div>
             <div class="balance-footer" id="funds">
-                <button id="add-funds-button" type="button">+ Add funds</button>
-                <button id="add-funds-button" type="button">- Withdraw funds</button>
-                <button id="gift-user-button" type="button">Gift a user</button>
+                <a class="wallet-action wallet-action-primary" href="wallet.html?mode=deposit">+ Deposit</a>
+                <a class="wallet-action" href="wallet.html?mode=withdraw">− Withdraw</a>
+                <button class="wallet-action" id="gift-user-button" type="button">Gift a user</button>
             </div>
         </section>
 
@@ -52,35 +56,35 @@
                     <a href="#services">View all</a>
                 </div>
                 <div class="services-grid">
-                    <div class="service-tile">
+                    <button class="service-tile" type="button" data-service="Airtime">
                         <span class="service-icon" data-lucide="phone"></span>
-                <p>Airtime</p>
-            </div>
-                    <div class="service-tile">
+                        <p>Airtime</p>
+                    </button>
+                    <button class="service-tile" type="button" data-service="Pay Bills">
                         <span class="service-icon" data-lucide="credit-card"></span>
-                <p>Pay Bills</p>
-            </div>
-                    <div class="service-tile">
+                        <p>Pay Bills</p>
+                    </button>
+                    <button class="service-tile" type="button" data-service="Data">
                         <span class="service-icon" data-lucide="wifi"></span>
-                <p>Data</p>
-            </div>
-                    <div class="service-tile">
+                        <p>Data</p>
+                    </button>
+                    <button class="service-tile" type="button" data-service="Flights">
                         <span class="service-icon" data-lucide="plane"></span>
-                <p>Flights</p>
-            </div>
-                    <div class="service-tile">
+                        <p>Flights</p>
+                    </button>
+                    <button class="service-tile" type="button" data-service="Gift Cards">
                         <span class="service-icon" data-lucide="gift"></span>
-                <p>Gift Cards</p>
-            </div>
-                    <div class="service-tile">
+                        <p>Gift Cards</p>
+                    </button>
+                    <button class="service-tile" type="button" data-service="Betting">
                         <span class="service-icon" data-lucide="spade"></span>
-                <p>Betting</p>
-            </div>
+                        <p>Betting</p>
+                    </button>
                 </div>
             </section>
 
             <section id="transactions" class="transactions" aria-labelledby="transactions-title">
-                <h3 id="transactions-title">Recent transactions</h3>
+                <h3 id="transactions-title">Recent activity</h3>
                 <ul class="transaction-list">
                     <li class="transaction-item">
                         <span class="transaction-icon">+</span>
@@ -96,7 +100,7 @@
                             <strong>Funded Sportybet</strong>
                             <span>Aug 17 · beeapp</span>
                         </div>
-                        <strong class="transaction-amount">-₦100,000</strong>
+                        <strong class="transaction-amount">-₦10,000</strong>
                     </li>
                     <li class="transaction-item">
                         <span class="transaction-icon">-</span>
@@ -107,7 +111,7 @@
                         <strong class="transaction-amount">-₦7,000</strong>
                     </li>
                     <li class="transaction-item">
-                        <span class="transaction-icon">-</span>
+                        <span class="transaction-icon">+</span>         
                         <div class="transaction-copy">
                             <strong>Wallet Withdrawal</strong>
                             <span>Aug 1 · USDT</span>
@@ -119,6 +123,30 @@
         </div>
 
     </main>
+
+    <dialog class="gift-dialog" id="gift-dialog" aria-labelledby="gift-title">
+        <form id="gift-form">
+            <div class="dialog-heading">
+                <div>
+                    <p class="eyebrow">Virtual only</p>
+                    <h2 id="gift-title">Send a gift</h2>
+                </div>
+                <button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button>
+            </div>
+            <p class="dialog-note">This gift updates your local wallet.</p>
+            <label class="form-field" for="gift-recipient">Recipient</label>
+            <input id="gift-recipient" name="recipient" type="text" autocomplete="off" placeholder="Name or beetag" required>
+            <label class="form-field" for="gift-amount">Gift amount</label>
+            <div class="amount-input"><span>₦</span><input id="gift-amount" name="amount" type="number" min="1" step="0.01" required></div>
+            <label class="form-field" for="gift-message">Message <span>(optional)</span></label>
+            <textarea id="gift-message" name="message" rows="2" maxlength="120" placeholder="Add a short note"></textarea>
+            <p class="form-feedback" id="gift-feedback" role="status" aria-live="polite"></p>
+            <div class="dialog-actions">
+                <button class="quiet-button" type="button" data-close-dialog>Cancel</button>
+                <button class="solid-button" type="submit">Send virtual gift</button>
+            </div>
+        </form>
+    </dialog>
 
 <script src="https://unpkg.com/lucide@latest"></script>
 

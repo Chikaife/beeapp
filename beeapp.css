@@ -1,22 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap");
+
 :root {
-	--bg: #fff2df;
+	--bg: #f5f8f4;
 	--surface: #ffffff;
-	--text: #2a2a33;
-	--muted: #5f5f6e;
-	--primary: #ff8c3d;
-	--primary-soft: #ffe0c5;
-	--accent: #5d49d0;
-	--border: rgba(93, 73, 208, 0.18);
-	--shadow: 0 24px 60px rgba(41, 31, 72, 0.12);
+	--text: #1e302b;
+	--muted: #687871;
+	--primary: #286d53;
+	--primary-soft: #e4f1e9;
+	--accent: #a85f27;
+	--border: rgba(37, 107, 82, 0.16);
+	--shadow: 0 18px 48px rgba(29, 58, 45, 0.1);
+	--font-body: "Satoshi", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	--font-ui: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+	--font-display: "Montserrat", sans-serif;
 }
 * {
 	box-sizing: border-box;
 }
+
+h1,
+h2,
+h3 {
+	font-family: var(--font-display);
+}
 body {
 	margin: 0;
 	min-height: 100vh;
-	font-family: Inter, "Segoe UI", sans-serif;
-	background: radial-gradient(circle at top left, #fff7e4 0%, #ffd9a8 40%, #e7d3f7 100%);
+	font-family: var(--font-body);
+	background: radial-gradient(circle at 8% 5%, #fff2df 0%, transparent 35%), radial-gradient(circle at 95% 95%, #dcebe0 0%, transparent 38%), var(--bg);
 	color: var(--text);
 	display: flex;
 	justify-content: center;
@@ -25,7 +37,7 @@ body {
 }
 .card {
 	width: min(100%, 420px);
-	border-radius: 28px;
+	border-radius: 12px;
 	background: var(--surface);
 	border: 1px solid var(--border);
 	box-shadow: var(--shadow);
@@ -33,7 +45,7 @@ body {
 }
 .card2 {
 	width: min(100%, 700px);
-	border-radius: 28px;
+	border-radius: 12px;
 	background: var(--surface);
 	border: 1px solid var(--border);
 	box-shadow: var(--shadow);
@@ -41,6 +53,7 @@ body {
 }
 .brand-title {
 	margin: 0 0 10px;
+	font-family: var(--font-display);
 	font-size: clamp(2rem, 2.3vw, 2.3rem);
 	letter-spacing: 0.05em;
 }
@@ -61,50 +74,53 @@ body {
 .field input {
 	width: 100%;
 	padding: 14px 16px;
-	border-radius: 16px;
-	border: 1px solid rgba(92, 76, 153, 0.18);
+	border-radius: 7px;
+	border: 1px solid var(--border);
 	background: #fff;
+	font-family: var(--font-ui);
 	font-size: 1rem;
 	color: #2f333d;
 }
 .field input:focus {
 	outline: none;
-	border-color: rgba(255, 140, 61, 0.55);
-	box-shadow: 0 0 0 4px rgba(255, 140, 61, 0.12);
+	border-color: rgba(40, 109, 83, 0.62);
+	box-shadow: 0 0 0 3px rgba(40, 109, 83, 0.12);
 }
 .btn-primary {
 	width: 100%;
 	border: none;
-	border-radius: 999px;
+	border-radius: 7px;
 	padding: 14px 18px;
-	background: linear-gradient(135deg, #ff8c3d 0%, #ffbf78 100%);
+	background: var(--primary);
 	color: #fff;
+	font-family: var(--font-ui);
 	font-weight: 700;
 	font-size: 1rem;
 	cursor: pointer;
-	box-shadow: 0 16px 24px rgba(255, 140, 61, 0.24);
+	box-shadow: 0 8px 18px rgba(40, 109, 83, 0.16);
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .btn-primary:hover {
 	transform: translateY(-1px);
-	box-shadow: 0 20px 26px rgba(255, 140, 61, 0.32);
+	box-shadow: 0 10px 20px rgba(40, 109, 83, 0.22);
 }
 .btn-primary2 {
 	width: 100%;
 	border: none;
-	border-radius: 100px;
+	border-radius: 7px;
 	padding: 8px 12px;
-	background: linear-gradient(135deg, #ff8c3d 0%, #ffbf78 100%);
+	background: var(--primary);
 	color: #fff;
+	font-family: var(--font-ui);
 	font-weight: 600;
 	font-size: 1rem;
 	cursor: pointer;
-	box-shadow: 0 16px 24px rgba(255, 140, 61, 0.24);
+	box-shadow: 0 8px 18px rgba(40, 109, 83, 0.16);
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .btn-primary2:hover {
 	transform: translateY(-1px);
-	box-shadow: 0 20px 26px rgba(255, 140, 61, 0.32);
+	box-shadow: 0 10px 20px rgba(40, 109, 83, 0.22);
 }
 .secondary {
 	margin-top: 20px;
@@ -133,7 +149,7 @@ body {
 	border-radius: 999px;
 	border: 1px solid rgba(93, 73, 208, 0.22);
 	background: rgba(93, 73, 208, 0.08);
-	color: #4e40d0;
+	color: var(--primary);
 	text-decoration: none;
 	font-weight: 700;
 }

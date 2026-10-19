@@ -1,31 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap");
+
 :root {
-	--dashboard-ink: #2a2a33;
-	--dashboard-muted: #6f6f7e;
-	--dashboard-orange: #ff8c3d;
-	--dashboard-orange-soft: #fff0df;
-	--dashboard-lilac: #e9e4ff;
-	--dashboard-purple: #5d49d0;
-	--dashboard-line: rgba(93, 73, 208, 0.14);
-	--dashboard-shadow: 0 22px 55px rgba(41, 31, 72, 0.11);
+	--dashboard-ink: #1e302b;
+	--dashboard-muted: #687871;
+	--dashboard-orange: #b96d2e;
+	--dashboard-orange-soft: #fff0dc;
+	--dashboard-lilac: #e4f1e9;
+	--dashboard-purple: #256b52;
+	--dashboard-line: rgba(37, 107, 82, 0.16);
+	--dashboard-shadow: 0 16px 38px rgba(29, 58, 45, 0.09);
+	--font-custom: "Montserrat", sans-serif;
+	--font-body: "Satoshi", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	--font-ui: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+	--font-display: "Montserrat", sans-serif;
 }
 
 * {
 	box-sizing: border-box;
 }
 
+h1,
+h2,
+h3 {
+	font-family: var(--font-display);
+}
+
 body {
 	margin: 0;
 	min-height: 100vh;
-	font-family: Inter, "Segoe UI", sans-serif;
+	font-family: var(--font-body);
 	color: var(--dashboard-ink);
 	background:
-		radial-gradient(circle at 8% 4%, rgba(255, 247, 228, 0.96), transparent 33%),
-		radial-gradient(circle at 100% 90%, rgba(231, 211, 247, 0.76), transparent 32%),
-		#fffaf4;
+		radial-gradient(circle at 8% 4%, rgba(255, 245, 224, 0.84), transparent 32%),
+		radial-gradient(circle at 100% 90%, rgba(218, 237, 223, 0.65), transparent 34%),
+		#f7faf7;
 }
 
 .dashboard-shell {
-	width: min(100% - 40px, 1180px);
+	width: min(calc(100% - 40px), 1180px);
 	margin: 0 auto;
 	padding: 28px 0 42px;
 }
@@ -361,9 +374,464 @@ body {
 	font-size: 0.95rem;
 }
 
+.brand-mark {
+	display: inline-block;
+	color: var(--dashboard-purple);
+	font-family: var(--font-display);
+	text-decoration: none;
+}
+
+.greetings h2,
+.section-heading h3,
+.balance-card .balance-amount,
+.wallet-panel h1,
+.dialog-heading h2 {
+	font-family: var(--font-display);
+}
+
+button,
+input,
+textarea,
+select,
+.topbar nav a,
+.back-link {
+	font-family: var(--font-ui);
+}
+
+.topbar nav a,
+.profile-button {
+	border-color: var(--dashboard-line);
+	color: var(--dashboard-purple);
+}
+
+.profile-button {
+	width: 42px;
+	height: 42px;
+	margin: 0;
+	border: 0;
+	background: var(--dashboard-lilac);
+	color: var(--dashboard-purple);
+}
+
+.username-btn {
+	width: auto;
+	margin-top: 18px;
+	padding: 10px 16px;
+	background: var(--dashboard-purple);
+	box-shadow: none;
+}
+
+.username-btn:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 8px 18px rgba(37, 107, 82, 0.18);
+}
+
+.time-date {
+	display: grid;
+	min-width: 196px;
+	gap: 5px;
+	padding: 14px 16px 13px;
+	border: 1px solid rgba(37, 107, 82, 0.16);
+	border-left: 3px solid var(--dashboard-purple);
+	border-radius: 10px;
+	background: rgba(255, 255, 255, 0.88);
+	box-shadow: 0 8px 20px rgba(29, 58, 45, 0.06);
+}
+
+.clock-heading {
+	display: flex;
+	align-items: center;
+	gap: 7px;
+	color: var(--dashboard-muted);
+	font-size: 0.68rem;
+	font-weight: 800;
+	text-transform: uppercase;
+}
+
+.clock-icon {
+	display: inline-flex;
+	color: var(--dashboard-orange);
+}
+
+.clock-icon svg {
+	width: 14px;
+	height: 14px;
+}
+
+.date-stamp,
+.time-stamp {
+	margin: 0;
+	border: 0;
+	border-radius: 0;
+	padding: 0;
+	background: transparent;
+	color: var(--dashboard-muted);
+	font-family: inherit;
+}
+
+.time-stamp {
+	color: var(--dashboard-ink);
+	font-family: var(--font-display);
+	font-size: 1.55rem;
+	font-weight: 750;
+	font-variant-numeric: tabular-nums;
+	line-height: 1.15;
+}
+
+.date-stamp {
+	font-size: 0.75rem;
+}
+
+.balance-card {
+	background: linear-gradient(118deg, #236b51 0%, #378061 64%, #6f9e69 100%);
+	border-color: rgba(37, 107, 82, 0.26);
+	box-shadow: 0 18px 34px rgba(37, 107, 82, 0.18);
+}
+
+.balance-card .balance-amount {
+	letter-spacing: 0;
+}
+
+.balance-footer {
+	flex-wrap: wrap;
+}
+
+.wallet-action {
+	display: inline-flex;
+	min-height: 42px;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid rgba(255, 255, 255, 0.48);
+	border-radius: 8px;
+	padding: 10px 16px;
+	background: rgba(255, 255, 255, 0.14);
+	color: #fff;
+	font: inherit;
+	font-size: 0.9rem;
+	font-weight: 700;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.wallet-action-primary {
+	background: #fff;
+	color: var(--dashboard-purple);
+}
+
+.wallet-action:hover,
+.wallet-mode button:hover {
+	filter: brightness(0.97);
+}
+
+.service-tile {
+	width: 100%;
+	border-color: var(--dashboard-line);
+	color: var(--dashboard-ink);
+	font: inherit;
+	text-align: left;
+	cursor: pointer;
+}
+
+.service-tile:focus-visible,
+.wallet-action:focus-visible,
+.topbar a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+	outline: 3px solid rgba(185, 109, 46, 0.38);
+	outline-offset: 2px;
+}
+
+.service-tile:hover {
+	border-color: rgba(37, 107, 82, 0.42);
+}
+
+.service-tile:nth-child(2n) .service-icon {
+	background: var(--dashboard-lilac);
+	color: var(--dashboard-purple);
+}
+
+.section-heading a {
+	color: var(--dashboard-purple);
+}
+
+.transactions,
+.service-tile {
+	box-shadow: 0 8px 22px rgba(29, 58, 45, 0.045);
+}
+
+.transaction-item {
+	border-color: rgba(37, 107, 82, 0.1);
+}
+
+.transaction-amount {
+	color: var(--dashboard-ink);
+	white-space: nowrap;
+}
+
+.gift-dialog {
+	width: min(100% - 32px, 450px);
+	max-height: min(90vh, 720px);
+	border: 1px solid var(--dashboard-line);
+	border-radius: 12px;
+	padding: 26px;
+	color: var(--dashboard-ink);
+	box-shadow: 0 24px 70px rgba(22, 44, 34, 0.24);
+}
+
+.gift-dialog::backdrop {
+	background: rgba(20, 35, 29, 0.46);
+	backdrop-filter: blur(3px);
+}
+
+.dialog-heading,
+.dialog-actions {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+}
+
+.dialog-heading h2,
+.wallet-panel h1 {
+	margin: 0;
+	font-size: 1.6rem;
+	letter-spacing: 0;
+}
+
+.eyebrow {
+	margin: 0 0 8px;
+	color: var(--dashboard-purple);
+	font-size: 0.76rem;
+	font-weight: 800;
+	text-transform: uppercase;
+}
+
+.dialog-close {
+	width: 36px;
+	height: 36px;
+	border: 0;
+	border-radius: 8px;
+	background: #edf4ef;
+	color: var(--dashboard-ink);
+	font-size: 1.4rem;
+	cursor: pointer;
+}
+
+.dialog-note,
+.wallet-intro,
+.wallet-hint,
+.wallet-disclaimer {
+	color: var(--dashboard-muted);
+	font-size: 0.9rem;
+	line-height: 1.55;
+}
+
+.form-field {
+	display: block;
+	margin: 16px 0 7px;
+	font-size: 0.88rem;
+	font-weight: 700;
+}
+
+.form-field span {
+	color: var(--dashboard-muted);
+	font-weight: 400;
+}
+
+.gift-dialog input,
+.gift-dialog textarea,
+.wallet-panel input[type="number"],
+.wallet-panel input[type="text"] {
+	width: 100%;
+	min-height: 46px;
+	border: 1px solid var(--dashboard-line);
+	border-radius: 7px;
+	padding: 11px 12px;
+	background: #fff;
+	color: var(--dashboard-ink);
+	font: inherit;
+}
+
+.gift-dialog textarea {
+	resize: vertical;
+}
+
+.amount-input {
+	display: flex;
+	align-items: center;
+	border: 1px solid var(--dashboard-line);
+	border-radius: 7px;
+	padding-left: 12px;
+	background: #fff;
+	color: var(--dashboard-muted);
+	font-weight: 700;
+}
+
+.amount-input input {
+	border: 0;
+}
+
+.form-feedback {
+	min-height: 1.4em;
+	margin: 10px 0;
+	color: var(--dashboard-purple);
+	font-size: 0.88rem;
+	line-height: 1.4;
+}
+
+.solid-button,
+.quiet-button {
+	min-height: 42px;
+	border: 1px solid transparent;
+	border-radius: 7px;
+	padding: 10px 14px;
+	font: inherit;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.solid-button {
+	background: var(--dashboard-purple);
+	color: #fff;
+}
+
+.quiet-button {
+	border-color: var(--dashboard-line);
+	background: #fff;
+	color: var(--dashboard-ink);
+}
+
+.wallet-page {
+	width: min(calc(100% - 40px), 760px);
+	margin: 0 auto;
+	padding: 28px 0 48px;
+}
+
+.wallet-topbar {
+	margin-bottom: 34px;
+}
+
+.back-link {
+	color: var(--dashboard-purple);
+	font-size: 0.9rem;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.wallet-panel {
+	max-width: 560px;
+	margin: 0 auto;
+	border: 1px solid var(--dashboard-line);
+	border-radius: 12px;
+	padding: clamp(22px, 5vw, 38px);
+	background: rgba(255, 255, 255, 0.92);
+	box-shadow: var(--dashboard-shadow);
+}
+
+.wallet-panel h1 {
+	font-size: 1.9rem;
+}
+
+.wallet-balance-box {
+	display: grid;
+	gap: 7px;
+	margin: 24px 0;
+	border-left: 3px solid var(--dashboard-orange);
+	padding: 4px 0 4px 14px;
+}
+
+.wallet-balance-box span {
+	color: var(--dashboard-muted);
+	font-size: 0.85rem;
+}
+
+.wallet-balance-box strong {
+	font-size: 1.5rem;
+	font-variant-numeric: tabular-nums;
+}
+
+.wallet-mode {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 4px;
+	margin-bottom: 22px;
+	border-radius: 8px;
+	padding: 4px;
+	background: #edf4ef;
+}
+
+.wallet-mode button {
+	min-height: 42px;
+	border: 0;
+	border-radius: 6px;
+	background: transparent;
+	color: var(--dashboard-muted);
+	font: inherit;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.wallet-mode button.is-active {
+	background: #fff;
+	color: var(--dashboard-purple);
+	box-shadow: 0 2px 7px rgba(29, 58, 45, 0.08);
+}
+
+.bank-details {
+	margin: 20px 0 14px;
+	border: 1px solid var(--dashboard-line);
+	border-radius: 8px;
+	padding: 14px;
+	background: #f8fbf8;
+}
+
+.bank-details[hidden] {
+	display: none;
+}
+
+.bank-details legend {
+	padding: 0 6px;
+	color: var(--dashboard-ink);
+	font-size: 0.9rem;
+	font-weight: 750;
+}
+
+.bank-details p {
+	margin: 0;
+	color: var(--dashboard-muted);
+	font-size: 0.8rem;
+	line-height: 1.45;
+}
+
+.bank-details input {
+	width: 100%;
+	min-height: 46px;
+	border: 1px solid var(--dashboard-line);
+	border-radius: 7px;
+	padding: 11px 12px;
+	background: #fff;
+	color: var(--dashboard-ink);
+	font: inherit;
+}
+
+.wallet-hint {
+	margin: 8px 0;
+	font-size: 0.8rem;
+}
+
+.wallet-submit {
+	width: 100%;
+}
+
+.wallet-disclaimer {
+	margin: 18px 0 0;
+	font-size: 0.8rem;
+}
+
 @media (max-width: 760px) {
 	.dashboard-shell {
-		width: min(100% - 28px, 560px);
+		width: min(calc(100% - 28px), 560px);
 		padding-top: 20px;
 	}
 
@@ -379,6 +847,10 @@ body {
 		align-items: flex-start;
 		flex-direction: column;
 		gap: 12px;
+	}
+
+	.time-date {
+		align-self: flex-end;
 	}
 
 	.dashboard-grid {
@@ -398,5 +870,14 @@ body {
 
 	.services-grid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.gift-dialog {
+		padding: 20px;
+	}
+
+	.dialog-actions {
+		align-items: stretch;
+		flex-direction: column-reverse;
 	}
 }
