@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions · beeapp</title>
+    <link rel="icon" type="image/png" href="chidi logo.png" sizes="32x32">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/app.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/core.js" defer></script>
+    <script src="js/shell.js" defer></script>
+    <script src="js/receipt.js" defer></script>
+    <script src="js/ledger.js" defer></script>
+    <script src="js/transactions.js" defer></script>
+</head>
+<body>
+
+<div class="mobile-bar">
+    <a href="dashboard.html">beeapp</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="sidebar" aria-label="Open navigation">
+        <i data-lucide="menu"></i>
+    </button>
+</div>
+
+<div class="app">
+    <aside class="sidebar" id="sidebar">
+        <div class="brand"><a href="dashboard.html">beeapp</a></div>
+        <nav class="nav" aria-label="Main">
+            <a class="nav-item" href="dashboard.html"><i data-lucide="house"></i><span>Overview</span></a>
+            <a class="nav-item" href="wallet.html?mode=transfer"><i data-lucide="arrow-left-right"></i><span>Transfer</span></a>
+            <a class="nav-item" href="wallet.html?mode=withdraw"><i data-lucide="banknote"></i><span>Withdraw</span></a>
+            <a class="nav-item" href="services.html"><i data-lucide="layout-grid"></i><span>Services</span></a>
+            <a class="nav-item" href="transactions.html" aria-current="page"><i data-lucide="receipt-text"></i><span>Transactions</span></a>
+        </nav>
+        <div class="side-foot">
+            <p class="sf-name" data-profile-name></p>
+            <p class="sf-meta" data-profile-handle></p>
+            <a class="sf-out" href="index.html" data-signout><i data-lucide="log-out"></i><span>Sign out</span></a>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="view-head">
+            <div>
+                <h1>Transactions</h1>
+                <p class="view-sub">Every debit and credit on wallet <span class="num" data-wallet-number></span>.</p>
+            </div>
+            <div class="view-actions">
+                <button class="btn btn-outline" type="button" data-export>
+                    <i data-lucide="download"></i><span>Download statement</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="toolbar">
+            <div class="search-field">
+                <i data-lucide="search" aria-hidden="true"></i>
+                <label class="sr-only" for="filter-search">Search transactions</label>
+                <input class="input input-sm" id="filter-search" type="search" data-filter-search
+                       placeholder="Search by name, bank or reference" autocomplete="off">
+            </div>
+
+            <div>
+                <label class="sr-only" for="filter-type">Type</label>
+                <select class="input input-sm" id="filter-type" data-filter-type>
+                    <option value="all">All types</option>
+                    <option value="deposit">Deposits</option>
+                    <option value="withdrawal">Withdrawals</option>
+                    <option value="transfer">Transfers</option>
+                    <option value="purchase">Airtime, data and bills</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="sr-only" for="filter-status">Status</label>
+                <select class="input input-sm" id="filter-status" data-filter-status>
+                    <option value="all">Any status</option>
+                    <option value="successful">Successful</option>
+                    <option value="processing">Processing</option>
+                    <option value="failed">Failed</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="sr-only" for="filter-range">Period</label>
+                <select class="input input-sm" id="filter-range" data-filter-range>
+                    <option value="all">All time</option>
+                    <option value="7">Last 7 days</option>
+                    <option value="30">Last 30 days</option>
+                    <option value="90">Last 90 days</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="ledger" data-statement-table>
+            <div class="ledger-head" aria-hidden="true">
+                <span>Transaction</span>
+                <span>Date</span>
+                <span>Status</span>
+                <span>Amount</span>
+            </div>
+            <div data-statement-rows></div>
+            <div class="ledger-foot">
+                <span class="foot-count" data-statement-count></span>
+                <button class="btn-link" type="button" data-clear-filters>Clear filters</button>
+            </div>
+        </div>
+
+        <div class="ledger empty" data-statement-empty hidden>
+            <strong>No transactions match these filters</strong>
+            <p>Try a different period, status or search term.</p>
+            <p style="margin-top:14px">
+                <button class="btn btn-outline btn-sm" type="button" data-clear-filters>Clear filters</button>
+            </p>
+        </div>
+    </main>
+</div>
+
+<div class="scrim" hidden></div>
+
+</body>
+</html>

@@ -1,67 +1,138 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="beeapp.css">
-	<link rel="icon" type="image/png" href="chidi logo.png" sizes="32x32">
-	<script src="beeapp.js" defer></script>
-	<title>Sign up</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create account · beeapp</title>
+    <link rel="icon" type="image/png" href="chidi logo.png" sizes="32x32">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/auth.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/core.js" defer></script>
+    <script src="js/auth.js" defer></script>
 </head>
 <body>
-	<div class="card2">
-<div class="card2">
-	<main class="container">
-		<form class="forgot-form" action="dashboard.html">
-			<h1 class="brand-title">beeapp</h1>
-		<p class="intro">Sign up for beeapp</p>
 
-		<div class="field">
-			<label for="firstName">First Name</label>
-			<input id="firstname" type="text" placeholder="First Name" required>
-		</div>
+<main class="auth">
+    <div class="auth-wrap" data-page="signup">
+        <div class="auth-card">
+            <a class="auth-brand" href="index.html">beeapp</a>
 
-		<div class="field">
-			<label for="middleName">Middle Name</label>
-			<input id="middlename" type="text" placeholder="Middle Name" required>
-		</div>
+            <div class="auth-steps" aria-label="Registration progress">
+                <span class="step is-current" data-step-index="0">
+                    <span class="step-n">1</span><span>Details</span>
+                </span>
+                <span class="step-sep"></span>
+                <span class="step" data-step-index="1">
+                    <span class="step-n">2</span><span>Password</span>
+                </span>
+                <span class="step-sep"></span>
+                <span class="step" data-step-index="2">
+                    <span class="step-n">3</span><span>Verify phone</span>
+                </span>
+            </div>
 
-		<div class="field">
-			<label for="lastName">Last Name</label>
-			<input id="lastname" type="text" placeholder="Last Name" required>
-		</div>
+            <section data-auth-step="0">
+                <h1>Create account</h1>
+                <form id="signup-details" novalidate>
+                    <div class="grid-2">
+                        <div class="field">
+                            <label for="first-name">First name</label>
+                            <input class="input" id="first-name" data-input="first" type="text"
+                                   autocomplete="given-name">
+                            <p class="field-error" data-error="first" hidden></p>
+                        </div>
+                        <div class="field">
+                            <label for="last-name">Last name</label>
+                            <input class="input" id="last-name" data-input="last" type="text"
+                                   autocomplete="family-name">
+                            <p class="field-error" data-error="last" hidden></p>
+                        </div>
+                    </div>
 
-		<div class="field">
-			<label for="contact">Phone number or email address</label>
-			<input id="contact" type="text" placeholder="Phone number or email address" required>
-		</div>
+                    <div class="field">
+                        <label for="signup-phone">Phone number</label>
+                        <input class="input" id="signup-phone" data-input="phone" type="tel" inputmode="numeric"
+                               maxlength="11" autocomplete="tel" placeholder="08024156932">
+                        <p class="field-error" data-error="phone" hidden></p>
+                    </div>
 
-		<div class="field">
-			<label>Gender</label>
-			<div>
-				<label><input type="radio" name="gender" value="male" required> Male</label>
-				<label><input type="radio" name="gender" value="female" required> Female</label>
-				<label><input type="radio" name="gender" value="custom" required> Custom</label>
-			</div>
-			<p><i>Select Custom to choose another gender, or if you'd rather not say.</i></p>
-		</div>
+                    <div class="field">
+                        <label for="signup-email">Email address</label>
+                        <input class="input" id="signup-email" data-input="email" type="email"
+                               autocomplete="email" autocapitalize="none" spellcheck="false">
+                        <p class="field-error" data-error="email" hidden></p>
+                    </div>
 
-		<div class="field">
-			<label for="dob">Date of Birth</label>
-			<input id="dob" type="date" required>
-		</div>
+                    <p class="auth-note">Your phone number and email are used to secure your account and send transaction alerts.</p>
 
-		<div class="field">
-			<label for="password">New Password</label>
-			<input id="password" type="password" placeholder="Password" required>
-		</div>
+                    <div class="auth-actions">
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Continue</button>
+                    </div>
+                </form>
 
-		<div class="secondary">
-			<p>By tapping Sign Up, you agree to our Terms, Data Policy and Cookie Policy. You may receive SMS notifications from us and can opt out at any time.</p>
-			<p><button class="btn-primary" type="submit">Sign Up</button></p>
-			<p><button type="button" class="btn-primary2" onclick="location.href='index.html'">Already have an account?</button></p>
-		</div>
-	</form>
-	</div>
+                <div class="auth-divider"></div>
+                <p class="auth-alt">Already have an account? <a href="index.html">Sign in</a></p>
+            </section>
+
+            <section data-auth-step="1" hidden>
+                <h1>Set a password</h1>
+                <p class="auth-sub">You'll use this each time you sign in.</p>
+
+                <form id="signup-password" novalidate>
+                    <div class="field">
+                        <label for="signup-password-field">Password</label>
+                        <div class="field-pw">
+                            <input class="input" id="signup-password-field" type="password"
+                                   autocomplete="new-password" data-strength="signup">
+                            <button class="pw-toggle" type="button" data-pw-toggle="#signup-password-field"
+                                    aria-label="Show password" aria-pressed="false">
+                                <i data-lucide="eye"></i>
+                            </button>
+                        </div>
+                        <p class="field-error" data-error="password" hidden></p>
+                        <ul class="pw-rules" data-pw-rules="signup">
+                            <li data-rule="length"><i data-lucide="check"></i>At least 8 characters</li>
+                            <li data-rule="upper"><i data-lucide="check"></i>One capital letter</li>
+                            <li data-rule="number"><i data-lucide="check"></i>One number</li>
+                        </ul>
+                    </div>
+
+                    <div class="field">
+                        <label for="signup-confirm">Confirm password</label>
+                        <input class="input" id="signup-confirm" type="password" autocomplete="new-password">
+                        <p class="field-error" data-error="confirm" hidden></p>
+                    </div>
+
+                    <div class="auth-actions">
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Continue</button>
+                        <button class="btn btn-quiet btn-block" type="button" data-back="1">Back</button>
+                    </div>
+                </form>
+            </section>
+
+            <section data-auth-step="2" hidden>
+                <h1>Verify your phone</h1>
+                <p class="auth-sub">Code sent to <b data-signup-mask></b></p>
+
+                <form id="signup-verify" novalidate>
+                    <div class="field">
+                        <label for="signup-otp">Verification code</label>
+                        <input class="input otp-input" id="signup-otp" type="text" inputmode="numeric"
+                               maxlength="6" autocomplete="one-time-code" placeholder="••••••">
+                        <p class="field-error" data-error="otp" hidden></p>
+                    </div>
+
+                    <div class="auth-actions">
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Create account</button>
+                        <button class="btn btn-quiet btn-block" type="button" data-resend>Resend code</button>
+                        <button class="btn btn-quiet btn-block" type="button" data-back="2">Back</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</main>
+
 </body>
 </html>

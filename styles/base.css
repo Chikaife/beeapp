@@ -1,0 +1,476 @@
+/* ==========================================================================
+   beeapp — foundations
+   Tokens, typography, buttons and form controls shared by every screen.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap");
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap");
+
+:root {
+	/* colour */
+	--green: #286d53;
+	--green-dark: #205843;
+	--soft: #e4f1e9;
+	--ink: #1e302b;
+	--muted: #687871;
+	--muted-2: #8b9a94;
+	--surface: #ffffff;
+	--ground: #f5f8f4;
+	--line: rgba(37, 107, 82, 0.16);
+	--line-soft: rgba(37, 107, 82, 0.09);
+	--ok: #286d53;
+	--warn: #8c5f18;
+	--fail: #a53a2b;
+
+	/* shape */
+	--radius-panel: 12px;
+	--radius-control: 8px;
+	--shadow-card: 0 1px 2px rgba(30, 48, 43, 0.04), 0 14px 34px rgba(30, 48, 43, 0.07);
+	--shadow-overlay: 0 24px 60px rgba(20, 35, 29, 0.18);
+
+	/* type */
+	--font-display: "Montserrat", system-ui, sans-serif;
+	--font-ui: "Satoshi", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	background: var(--ground);
+	color: var(--ink);
+	font-family: var(--font-ui);
+	font-size: 14px;
+	line-height: 1.45;
+	font-variant-numeric: tabular-nums;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd,
+figure {
+	margin: 0;
+}
+
+ul,
+ol {
+	padding: 0;
+	list-style: none;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+button {
+	font: inherit;
+	color: inherit;
+	background: none;
+	border: 0;
+	padding: 0;
+	cursor: pointer;
+}
+
+h1 {
+	font-family: var(--font-display);
+	font-size: 24px;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+	line-height: 1.25;
+}
+
+h2 {
+	font-family: var(--font-display);
+	font-size: 18px;
+	font-weight: 600;
+	letter-spacing: -0.005em;
+	line-height: 1.3;
+}
+
+p {
+	line-height: 1.5;
+}
+
+svg {
+	flex: none;
+}
+
+:focus-visible {
+	outline: 2px solid rgba(40, 109, 83, 0.55);
+	outline-offset: 2px;
+	border-radius: 6px;
+}
+
+[hidden] {
+	display: none !important;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+.muted {
+	color: var(--muted);
+}
+
+.num {
+	font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons
+   ========================================================================== */
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	height: 40px;
+	padding: 0 16px;
+	border: 1px solid transparent;
+	border-radius: var(--radius-control);
+	font-size: 14px;
+	font-weight: 600;
+	white-space: nowrap;
+	transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn svg,
+.btn i {
+	width: 16px;
+	height: 16px;
+	stroke-width: 1.9;
+}
+
+.btn-primary {
+	background: var(--green);
+	border-color: var(--green);
+	color: #fff;
+}
+
+.btn-primary:hover {
+	background: var(--green-dark);
+	border-color: var(--green-dark);
+}
+
+.btn-outline {
+	background: var(--surface);
+	border-color: var(--line);
+	color: var(--ink);
+}
+
+.btn-outline svg,
+.btn-outline i {
+	color: var(--muted);
+}
+
+.btn-outline:hover {
+	border-color: rgba(37, 107, 82, 0.34);
+	background: #fbfdfb;
+}
+
+.btn-quiet {
+	background: transparent;
+	color: var(--muted);
+	padding: 0 10px;
+}
+
+.btn-quiet:hover {
+	color: var(--ink);
+	background: rgba(37, 107, 82, 0.06);
+}
+
+.btn-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--green);
+}
+
+.btn-link:hover {
+	color: var(--green-dark);
+}
+
+.btn-block {
+	width: 100%;
+}
+
+.btn-lg {
+	height: 48px;
+	font-size: 15px;
+	padding: 0 20px;
+}
+
+.btn-sm {
+	height: 34px;
+	padding: 0 12px;
+	font-size: 13px;
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+	background: #e6ece7;
+	border-color: #e6ece7;
+	color: #6f817a;
+	cursor: not-allowed;
+}
+
+/* --------------------------------------------------------------------------
+   Form controls
+   ========================================================================== */
+
+.field {
+	margin-bottom: 16px;
+}
+
+.field > label,
+.field-label,
+.label {
+	display: block;
+	margin-bottom: 6px;
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--muted);
+}
+
+.field-row {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 12px;
+	margin-bottom: 6px;
+}
+
+.field-row > label {
+	margin-bottom: 0;
+}
+
+.input,
+select.input,
+textarea.input {
+	width: 100%;
+	height: 48px;
+	padding: 0 14px;
+	border: 1px solid var(--line);
+	border-radius: var(--radius-control);
+	background: var(--surface);
+	font-family: var(--font-ui);
+	font-size: 15px;
+	color: var(--ink);
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+select.input {
+	appearance: none;
+	padding-right: 38px;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23687871' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 12px center;
+}
+
+textarea.input {
+	height: auto;
+	min-height: 88px;
+	padding: 12px 14px;
+	resize: vertical;
+}
+
+.input::placeholder,
+textarea.input::placeholder {
+	color: var(--muted-2);
+}
+
+.input:focus,
+textarea.input:focus,
+select.input:focus {
+	outline: none;
+	border-color: rgba(40, 109, 83, 0.55);
+	box-shadow: 0 0 0 3px rgba(40, 109, 83, 0.12);
+}
+
+.input[aria-invalid="true"] {
+	border-color: rgba(165, 58, 43, 0.6);
+	box-shadow: 0 0 0 3px rgba(165, 58, 43, 0.1);
+}
+
+.input-sm {
+	height: 40px;
+	font-size: 13.5px;
+}
+
+.field-error {
+	display: block;
+	margin-top: 6px;
+	font-size: 12px;
+	color: var(--fail);
+}
+
+.field-hint {
+	display: block;
+	margin-top: 6px;
+	font-size: 12px;
+	color: var(--muted);
+}
+
+/* money input with a fixed currency marker */
+.input-prefix {
+	display: flex;
+	align-items: center;
+	height: 48px;
+	border: 1px solid var(--line);
+	border-radius: var(--radius-control);
+	background: var(--surface);
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input-prefix > span {
+	padding-left: 14px;
+	font-size: 15px;
+	color: var(--muted);
+}
+
+.input-prefix input {
+	flex: 1;
+	min-width: 0;
+	height: 100%;
+	padding: 0 14px 0 5px;
+	border: 0;
+	background: transparent;
+	font-family: var(--font-ui);
+	font-size: 15px;
+	color: var(--ink);
+	outline: none;
+}
+
+.input-prefix:focus-within {
+	border-color: rgba(40, 109, 83, 0.55);
+	box-shadow: 0 0 0 3px rgba(40, 109, 83, 0.12);
+}
+
+.input-prefix[data-invalid="true"] {
+	border-color: rgba(165, 58, 43, 0.6);
+	box-shadow: 0 0 0 3px rgba(165, 58, 43, 0.1);
+}
+
+/* password field with an in-field reveal */
+.field-pw {
+	position: relative;
+}
+
+.field-pw .input {
+	padding-right: 46px;
+}
+
+.pw-toggle {
+	position: absolute;
+	right: 6px;
+	top: 50%;
+	transform: translateY(-50%);
+	display: grid;
+	place-items: center;
+	width: 32px;
+	height: 32px;
+	border-radius: 6px;
+	color: var(--muted);
+}
+
+.pw-toggle svg {
+	width: 17px;
+	height: 17px;
+	stroke-width: 1.8;
+}
+
+.pw-toggle:hover {
+	background: rgba(37, 107, 82, 0.07);
+	color: var(--ink);
+}
+
+
+/* --------------------------------------------------------------------------
+   Status
+   ========================================================================== */
+
+.status {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 13px;
+	font-weight: 500;
+}
+
+.status svg,
+.status i {
+	width: 14px;
+	height: 14px;
+	stroke-width: 2.2;
+}
+
+.status.is-ok {
+	color: var(--ok);
+}
+
+.status.is-warn {
+	color: var(--warn);
+}
+
+.status.is-fail {
+	color: var(--fail);
+}
+
+.icon-btn {
+	display: grid;
+	place-items: center;
+	width: 28px;
+	height: 28px;
+	border-radius: 6px;
+	color: var(--muted);
+}
+
+.icon-btn svg,
+.icon-btn i {
+	width: 16px;
+	height: 16px;
+	stroke-width: 1.8;
+}
+
+.icon-btn:hover {
+	background: rgba(37, 107, 82, 0.07);
+	color: var(--ink);
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		transition-duration: 0.01ms !important;
+		animation-duration: 0.01ms !important;
+	}
+}

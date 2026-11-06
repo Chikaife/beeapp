@@ -3,48 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="dashboard.css">
-    <script src="beeapp.js" defer></script>
-    <title>beeapp | Wallet</title>
+    <title>Wallet · beeapp</title>
+    <link rel="icon" type="image/png" href="chidi logo.png" sizes="32x32">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/app.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/core.js" defer></script>
+    <script src="js/banks.js" defer></script>
+    <script src="js/shell.js" defer></script>
+    <script src="js/money.js" defer></script>
 </head>
 <body>
-    <main class="wallet-page">
-        <header class="topbar wallet-topbar">
-            <a class="brand-mark" href="dashboard.html">beeapp</a>
-            <a class="back-link" href="dashboard.html">Back to dashboard</a>
+
+<div class="mobile-bar">
+    <a href="dashboard.html">beeapp</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="sidebar" aria-label="Open navigation">
+        <i data-lucide="menu"></i>
+    </button>
+</div>
+
+<div class="app">
+    <aside class="sidebar" id="sidebar">
+        <div class="brand"><a href="dashboard.html">beeapp</a></div>
+        <nav class="nav" aria-label="Main">
+            <a class="nav-item" href="dashboard.html"><i data-lucide="house"></i><span>Overview</span></a>
+            <a class="nav-item" href="wallet.html?mode=transfer"><i data-lucide="arrow-left-right"></i><span>Transfer</span></a>
+            <a class="nav-item" href="wallet.html?mode=withdraw" aria-current="page"><i data-lucide="banknote"></i><span>Withdraw</span></a>
+            <a class="nav-item" href="services.html"><i data-lucide="layout-grid"></i><span>Services</span></a>
+            <a class="nav-item" href="transactions.html"><i data-lucide="receipt-text"></i><span>Transactions</span></a>
+        </nav>
+        <div class="side-foot">
+            <p class="sf-name" data-profile-name></p>
+            <p class="sf-meta" data-profile-handle></p>
+            <a class="sf-out" href="index.html" data-signout><i data-lucide="log-out"></i><span>Sign out</span></a>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="view-head">
+            <div>
+                <h1 data-view-title>Withdraw</h1>
+                <p class="view-sub" data-view-sub></p>
+            </div>
+            <div class="steps" data-steps aria-label="Payment progress"></div>
         </header>
 
-        <section class="wallet-panel" aria-labelledby="wallet-title">
-            <p class="eyebrow">Wallet</p>
-            <h1 id="wallet-title">Deposit to wallet</h1>
-            <p class="wallet-intro">Add funds or request a withdrawal using the form below.</p>
+        <div class="segmented mode-switch" role="tablist" aria-label="Wallet action">
+            <button type="button" role="tab" data-mode="withdraw" aria-selected="true">Withdraw</button>
+            <button type="button" role="tab" data-mode="transfer" aria-selected="false">Transfer</button>
+            <button type="button" role="tab" data-mode="deposit" aria-selected="false">Deposit</button>
+        </div>
 
-            <div class="wallet-balance-box">
-                <span>Current balance</span>
-                <strong data-wallet-balance>₦39,344,984.56</strong>
+        <div class="money-grid">
+
+            <div data-step="details">
+
+                <!-- Withdraw ---------------------------------------------------->
+                <section class="money-form" data-panel="withdraw" hidden aria-labelledby="withdraw-heading">
+                    <h2 id="withdraw-heading">Withdraw to bank account</h2>
+
+                    <div class="saved-picks" data-saved-chips hidden></div>
+
+                    <div class="field">
+                        <div class="field-row">
+                            <label for="w-amount">Amount</label>
+                            <span class="label">Available <b data-available></b></span>
+                        </div>
+                        <div class="input-prefix">
+                            <span>₦</span>
+                            <input id="w-amount" data-input="wamount" type="text" inputmode="decimal"
+                                   autocomplete="off" placeholder="0.00">
+                        </div>
+                        <p class="field-error" data-error="wamount" hidden></p>
+                    </div>
+
+                    <div class="field">
+                        <label for="w-bank-search">Bank</label>
+                        <div class="combo" id="w-bank">
+                            <div class="combo-input-wrap">
+                                <i data-lucide="search" aria-hidden="true"></i>
+                                <input class="input" id="w-bank-search" data-input="wbank" type="text"
+                                       role="combobox" aria-expanded="false" aria-controls="w-bank-list"
+                                       aria-autocomplete="list" autocomplete="off" placeholder="Search 269 banks">
+                                <span class="combo-code"></span>
+                            </div>
+                            <div class="combo-list" id="w-bank-list" role="listbox" aria-label="Nigerian banks" hidden></div>
+                        </div>
+                        <p class="field-error" data-error="wbank" hidden></p>
+                    </div>
+
+                    <div class="field">
+                        <label for="w-account">Account number</label>
+                        <input class="input" id="w-account" data-input="waccount" type="text" inputmode="numeric"
+                               maxlength="10" autocomplete="off" placeholder="10-digit NUBAN">
+                        <p class="field-error" data-error="waccount" hidden></p>
+                    </div>
+
+                    <div class="identity is-empty" data-w-identity>
+                        <div>
+                            <p class="identity-label">Account name</p>
+                            <p class="identity-name">Enter bank and account number</p>
+                            <p class="identity-meta">The name on the account appears here.</p>
+                        </div>
+                        <span class="identity-mark" hidden></span>
+                    </div>
+
+                    <div class="money-foot">
+                        <button class="btn btn-quiet" type="button" data-new>Cancel</button>
+                        <button class="btn btn-primary" type="button" data-review>
+                            <span>Review withdrawal</span><i data-lucide="arrow-right"></i>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Transfer ---------------------------------------------------->
+                <section class="money-form" data-panel="transfer" hidden aria-labelledby="transfer-heading">
+                    <h2 id="transfer-heading">Send to a beeapp account</h2>
+
+                    <div class="field">
+                        <label for="t-recipient">Beetag or phone number</label>
+                        <input class="input" id="t-recipient" data-input="trecipient" type="text"
+                               autocomplete="off" autocapitalize="none" placeholder="@chinedue or 08024156932">
+                        <p class="field-error" data-error="trecipient" hidden></p>
+                    </div>
+
+                    <div class="identity is-empty" data-t-identity>
+                        <div>
+                            <p class="identity-label">Recipient</p>
+                            <p class="identity-name">Enter a beetag or phone number</p>
+                            <p class="identity-meta">Transfers to beeapp accounts are free.</p>
+                        </div>
+                        <span class="identity-mark" hidden></span>
+                    </div>
+
+                    <div class="field">
+                        <label for="t-amount">Amount</label>
+                        <div class="input-prefix">
+                            <span>₦</span>
+                            <input id="t-amount" data-input="tamount" type="text" inputmode="decimal"
+                                   autocomplete="off" placeholder="0.00">
+                        </div>
+                        <p class="field-error" data-error="tamount" hidden></p>
+                    </div>
+
+                    <div class="field">
+                        <label for="t-narration">Narration <span class="muted">(optional)</span></label>
+                        <input class="input" id="t-narration" type="text" maxlength="60" autocomplete="off" placeholder="What is this for?">
+                    </div>
+
+                    <div class="money-foot">
+                        <button class="btn btn-quiet" type="button" data-new>Cancel</button>
+                        <button class="btn btn-primary" type="button" data-review>
+                            <span>Review transfer</span><i data-lucide="arrow-right"></i>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Deposit ----------------------------------------------------->
+                <section class="money-form" data-panel="deposit" hidden aria-labelledby="deposit-heading">
+                    <h2 id="deposit-heading">Fund your wallet</h2>
+
+                    <dl class="receive">
+                        <div class="receive-row">
+                            <dt>Bank</dt>
+                            <dd data-receive-bank></dd>
+                        </div>
+                        <div class="receive-row">
+                            <dt>Account name</dt>
+                            <dd data-receive-name></dd>
+                        </div>
+                        <div class="receive-row">
+                            <dt>Account number</dt>
+                            <dd>
+                                <span class="acct num" data-wallet-number></span>
+                                <button class="icon-btn" type="button" data-copy-wallet aria-label="Copy account number">
+                                    <i data-lucide="copy"></i>
+                                </button>
+                            </dd>
+                        </div>
+                    </dl>
+
+                    <div class="field" style="margin-top:20px">
+                        <label for="d-amount">Amount you sent</label>
+                        <div class="input-prefix">
+                            <span>₦</span>
+                            <input id="d-amount" data-input="damount" type="text" inputmode="decimal"
+                                   autocomplete="off" placeholder="0.00">
+                        </div>
+                        <p class="field-error" data-error="damount" hidden></p>
+                    </div>
+
+                    <div class="field">
+                        <label for="d-bank-search">Your bank</label>
+                        <div class="combo" id="d-bank">
+                            <div class="combo-input-wrap">
+                                <i data-lucide="search" aria-hidden="true"></i>
+                                <input class="input" id="d-bank-search" type="text" role="combobox"
+                                       aria-expanded="false" aria-controls="d-bank-list" aria-autocomplete="list"
+                                       autocomplete="off" placeholder="Where you sent it from">
+                                <span class="combo-code"></span>
+                            </div>
+                            <div class="combo-list" id="d-bank-list" role="listbox" aria-label="Nigerian banks" hidden></div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="d-reference">Transfer reference <span class="muted">(optional)</span></label>
+                        <input class="input" id="d-reference" type="text" maxlength="30" autocomplete="off" placeholder="From your bank alert">
+                    </div>
+
+                    <div class="money-foot">
+                        <a class="btn btn-quiet" href="transactions.html">Deposit history</a>
+                        <button class="btn btn-primary" type="button" data-deposit-confirm>
+                            <span>Confirm deposit</span>
+                        </button>
+                    </div>
+                </section>
+
             </div>
 
-            <div class="wallet-mode" role="group" aria-label="Choose wallet action">
-                <button type="button" data-wallet-mode="deposit" aria-pressed="true">Deposit</button>
-                <button type="button" data-wallet-mode="withdraw" aria-pressed="false">Withdraw</button>
-            </div>
+            <!-- Review ---------------------------------------------------------->
+            <section class="money-form" data-step="review" hidden aria-labelledby="review-title">
+                <h2 id="review-title" data-review-title>Review withdrawal</h2>
+                <dl class="review" data-review-rows></dl>
+                <div class="money-foot">
+                    <button class="btn btn-quiet" type="button" data-edit>Edit details</button>
+                    <button class="btn btn-primary" type="button" data-confirm>Confirm withdrawal</button>
+                </div>
+            </section>
 
-            <form id="wallet-form">
-                <input id="wallet-mode" type="hidden" value="deposit">
-                <label class="form-field" for="wallet-amount">Amount</label>
-                <div class="amount-input"><span>₦</span><input id="wallet-amount" name="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required></div>
-                <fieldset class="bank-details" id="withdrawal-bank-details" hidden>
-                    <legend>Bank details</legend>
-                    <label class="form-field" for="bank-name">Bank name</label>
-                    <input id="bank-name" name="bankName" type="text" autocomplete="off" placeholder="Enter your bank name">
-                    <label class="form-field" for="account-number">Account number</label>
-                    <input id="account-number" name="accountNumber" type="text" inputmode="numeric" autocomplete="off" maxlength="20" pattern="[0-9]{6,20}" placeholder="Enter your">
-                </fieldset>
-                <p class="form-feedback" id="wallet-feedback" role="status" aria-live="polite"></p>
-                <button class="solid-button wallet-submit" id="wallet-submit" type="submit">Add funds</button>
-            </form>
-            <p class="wallet-disclaimer"><span id="wallet-activity-label">Deposit</span> will appear in your recent activity.</p>
-        </section>
+            <!-- Receipt --------------------------------------------------------->
+            <section class="receipt" data-step="receipt" hidden aria-labelledby="receipt-heading">
+                <div class="receipt-top">
+                    <div>
+                        <div class="receipt-mark" data-receipt-mark><i data-lucide="check"></i></div>
+                        <h2 id="receipt-heading" data-receipt-title>Payment sent</h2>
+                        <p class="receipt-sub" data-receipt-sub></p>
+                    </div>
+                </div>
+
+                <p class="receipt-amount"><span class="cur">₦</span><span data-receipt-amount>0.00</span></p>
+
+                <dl class="review receipt-details" data-receipt-rows></dl>
+
+                <div class="receipt-actions">
+                    <a class="btn btn-primary" href="dashboard.html">Back to overview</a>
+                    <button class="btn btn-outline" type="button" data-print>
+                        <i data-lucide="printer"></i><span>Save receipt</span>
+                    </button>
+                    <button class="btn btn-quiet" type="button" data-new>New payment</button>
+                </div>
+            </section>
+
+            <aside class="summary" data-summary aria-label="Payment summary"></aside>
+        </div>
     </main>
+</div>
+
+<div class="scrim" hidden></div>
+
 </body>
 </html>

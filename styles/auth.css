@@ -1,0 +1,203 @@
+/* ==========================================================================
+   beeapp — authentication
+   Sign in, account creation and password reset share one card.
+   ========================================================================== */
+
+.auth {
+	display: grid;
+	place-items: center;
+	min-height: 100vh;
+	padding: 40px 20px 28px;
+}
+
+.auth-wrap {
+	width: min(100%, 420px);
+}
+
+.auth-card {
+	padding: 28px;
+	border: 1px solid var(--line);
+	border-radius: var(--radius-panel);
+	background: var(--surface);
+	box-shadow: var(--shadow-card);
+}
+
+.auth-brand {
+	display: inline-block;
+	margin-bottom: 22px;
+	font-family: var(--font-display);
+	font-size: 21px;
+	font-weight: 800;
+	letter-spacing: 0.01em;
+	color: var(--green);
+}
+
+.auth-card h1 {
+	font-size: 24px;
+}
+
+.auth-sub {
+	margin-top: 6px;
+	font-size: 13.5px;
+	color: var(--muted);
+}
+
+.auth-card form {
+	margin-top: 22px;
+}
+
+.auth-actions {
+	margin-top: 20px;
+}
+
+.auth-divider {
+	height: 1px;
+	margin: 20px 0 16px;
+	background: var(--line-soft);
+}
+
+.auth-alt {
+	font-size: 13.5px;
+	color: var(--muted);
+	text-align: center;
+}
+
+.auth-alt a,
+.auth-alt button {
+	font-weight: 600;
+	color: var(--green);
+}
+
+.auth-alt button {
+	font-size: inherit;
+}
+
+.auth-alt a:hover,
+.auth-alt button:hover {
+	color: var(--green-dark);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+
+.auth-note {
+	margin-top: 14px;
+	font-size: 12px;
+	line-height: 1.5;
+	color: var(--muted);
+}
+
+/* steps */
+.auth-steps {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	margin-bottom: 14px;
+	font-size: 12px;
+	color: var(--muted);
+}
+
+.auth-steps .step {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+}
+
+.auth-steps .step-n {
+	display: grid;
+	place-items: center;
+	width: 18px;
+	height: 18px;
+	border: 1px solid var(--line);
+	border-radius: 50%;
+	background: var(--surface);
+	font-size: 10.5px;
+	font-weight: 600;
+}
+
+.auth-steps .step.is-done .step-n {
+	border-color: transparent;
+	background: rgba(40, 109, 83, 0.14);
+	color: var(--green);
+}
+
+.auth-steps .step.is-done {
+	color: var(--muted);
+}
+
+.auth-steps .step.is-current {
+	color: var(--ink);
+	font-weight: 600;
+}
+
+.auth-steps .step.is-current .step-n {
+	border-color: var(--green);
+	background: var(--green);
+	color: #fff;
+}
+
+.auth-steps .step-sep {
+	width: 14px;
+	height: 1px;
+	background: var(--line);
+}
+
+/* one-time code */
+.otp-input {
+	height: 56px;
+	padding: 0 18px;
+	font-size: 19px;
+	font-weight: 600;
+	letter-spacing: 0.42em;
+}
+
+.grid-2 {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 12px;
+}
+
+/* password requirement list */
+.pw-rules {
+	margin-top: 10px;
+	font-size: 12px;
+	color: var(--muted);
+}
+
+.pw-rules li {
+	display: flex;
+	align-items: center;
+	gap: 7px;
+	padding: 2px 0;
+}
+
+.pw-rules li svg {
+	width: 13px;
+	height: 13px;
+	stroke-width: 2.2;
+	color: var(--muted-2);
+}
+
+.pw-rules li.is-met {
+	color: var(--green);
+}
+
+.pw-rules li.is-met svg {
+	color: var(--green);
+}
+
+@media (max-width: 460px) {
+	.auth {
+		padding: 20px 14px;
+		align-items: flex-start;
+	}
+
+	.auth-card {
+		padding: 22px 20px;
+		border-radius: 10px;
+	}
+
+	.auth-brand {
+		margin-bottom: 18px;
+	}
+}

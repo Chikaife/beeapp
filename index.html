@@ -1,38 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>beeapp | Buy Airtime and Pay Bills</title>
+    <title>Sign in · beeapp</title>
+    <meta name="description" content="Sign in to your beeapp wallet.">
     <link rel="icon" type="image/png" href="chidi logo.png" sizes="32x32">
-    <link rel="stylesheet" type="text/css" href="beeapp.css">
-    <script src="beeapp.js" defer></script>
-
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/auth.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/core.js" defer></script>
+    <script src="js/auth.js" defer></script>
 </head>
 <body>
-    <div class="card">
-        <form action="dashboard.html">
-            <h2 class="brand-title">beeapp</h2>
-            <p class="intro">Get beeapp for Android and browse faster.</p>
-            <div class="field">
-                <label for="email">Email address</label>
-                <input id="email" type="email" required>
-            </div>
-            <div class="field">
-                <label for="password">Password</label>
-                <input id="password" type="password" required>
-            </div>
-            <button class="btn-primary" type="submit">Log In</button>
-        </form>
-        
-        <div class="secondary">
-            <p class="or-text">or</p>
-            <b><button class="btn-primary" onclick="location.href='signup.html'">Create new account</button></b></p>
-            <p ><i><button class="btn-primary" onclick="location.href='password1.html'">Forgotten password</button></i></p>
+
+<main class="auth">
+    <div class="auth-wrap" data-page="signin">
+        <div class="auth-card">
+            <a class="auth-brand" href="index.html">beeapp</a>
+            <h1>Sign in</h1>
+
+            <form id="signin-form" novalidate>
+                <div class="field">
+                    <label for="identifier">Phone number or email</label>
+                    <input class="input" id="identifier" data-input="identifier" type="text"
+                           autocomplete="username" autocapitalize="none" spellcheck="false">
+                    <p class="field-error" data-error="identifier" hidden></p>
+                </div>
+
+                <div class="field">
+                    <div class="field-row">
+                        <label for="password">Password</label>
+                        <a class="btn-link" href="reset-password.html">Forgot password?</a>
+                    </div>
+                    <div class="field-pw">
+                        <input class="input" id="password" data-input="password" type="password"
+                               autocomplete="current-password">
+                        <button class="pw-toggle" type="button" data-pw-toggle="#password"
+                                aria-label="Show password" aria-pressed="false">
+                            <i data-lucide="eye"></i>
+                        </button>
+                    </div>
+                    <p class="field-error" data-error="password" hidden></p>
+                </div>
+
+                <div class="auth-actions">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Sign in</button>
+                </div>
+            </form>
+
+            <div class="auth-divider"></div>
+            <p class="auth-alt">New to beeapp? <a href="signup.html">Create an account</a></p>
         </div>
-</div>
-
-
+    </div>
+</main>
 
 </body>
 </html>

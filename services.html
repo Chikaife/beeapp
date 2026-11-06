@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services · beeapp</title>
+    <link rel="icon" type="image/png" href="chidi logo.png" sizes="32x32">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/app.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/core.js" defer></script>
+    <script src="js/banks.js" defer></script>
+    <script src="js/shell.js" defer></script>
+    <script src="js/services.js" defer></script>
+</head>
+<body>
+
+<div class="mobile-bar">
+    <a href="dashboard.html">beeapp</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="sidebar" aria-label="Open navigation">
+        <i data-lucide="menu"></i>
+    </button>
+</div>
+
+<div class="app">
+    <aside class="sidebar" id="sidebar">
+        <div class="brand"><a href="dashboard.html">beeapp</a></div>
+        <nav class="nav" aria-label="Main">
+            <a class="nav-item" href="dashboard.html"><i data-lucide="house"></i><span>Overview</span></a>
+            <a class="nav-item" href="wallet.html?mode=transfer"><i data-lucide="arrow-left-right"></i><span>Transfer</span></a>
+            <a class="nav-item" href="wallet.html?mode=withdraw"><i data-lucide="banknote"></i><span>Withdraw</span></a>
+            <a class="nav-item" href="services.html" aria-current="page"><i data-lucide="layout-grid"></i><span>Services</span></a>
+            <a class="nav-item" href="transactions.html"><i data-lucide="receipt-text"></i><span>Transactions</span></a>
+        </nav>
+        <div class="side-foot">
+            <p class="sf-name" data-profile-name></p>
+            <p class="sf-meta" data-profile-handle></p>
+            <a class="sf-out" href="index.html" data-signout><i data-lucide="log-out"></i><span>Sign out</span></a>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="view-head">
+            <div>
+                <h1 data-service-title>Buy airtime</h1>
+                <p class="view-sub">Paid from your beeapp wallet.</p>
+            </div>
+            <div class="steps" data-steps aria-label="Payment progress"></div>
+        </header>
+
+        <div class="chips chips-4 mode-switch" role="tablist" aria-label="Service">
+            <button class="chip" type="button" role="tab" data-service="airtime" aria-selected="true">
+                <i data-lucide="smartphone"></i><span>Airtime</span>
+            </button>
+            <button class="chip" type="button" role="tab" data-service="data" aria-selected="false">
+                <i data-lucide="wifi"></i><span>Data</span>
+            </button>
+            <button class="chip" type="button" role="tab" data-service="bill" aria-selected="false">
+                <i data-lucide="zap"></i><span>Bills</span>
+            </button>
+            <button class="chip" type="button" role="tab" data-service="betting" aria-selected="false">
+                <i data-lucide="dice-5"></i><span>Betting</span>
+            </button>
+        </div>
+
+        <div class="money-grid">
+
+            <div data-step="details">
+
+                <!-- Airtime ---------------------------------------------------->
+                <section class="money-form" data-service-panel="airtime" aria-labelledby="airtime-heading">
+                    <h2 id="airtime-heading">Airtime</h2>
+
+                    <div class="field" style="margin-top:18px">
+                        <span class="label">Network</span>
+                        <div class="choice-row" role="radiogroup" aria-label="Network" data-network-group></div>
+                    </div>
+
+                    <div class="field">
+                        <label for="a-phone">Phone number</label>
+                        <input class="input" id="a-phone" data-input="aphone" type="tel" inputmode="numeric"
+                               maxlength="11" autocomplete="tel" placeholder="08024156932">
+                        <p class="field-error" data-error="aphone" hidden></p>
+                    </div>
+
+                    <div class="field">
+                        <span class="label">Amount</span>
+                        <div class="denoms" data-denoms></div>
+                        <div class="input-prefix">
+                            <span>₦</span>
+                            <input id="a-amount" data-input="aamount" type="text" inputmode="decimal"
+                                   autocomplete="off" placeholder="Other amount">
+                        </div>
+                        <p class="field-error" data-error="aamount" hidden></p>
+                    </div>
+
+                    <div class="money-foot">
+                        <a class="btn btn-quiet" href="dashboard.html">Cancel</a>
+                        <button class="btn btn-primary" type="button" data-review>
+                            <span>Review payment</span><i data-lucide="arrow-right"></i>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Data ------------------------------------------------------->
+                <section class="money-form" data-service-panel="data" hidden aria-labelledby="data-heading">
+                    <h2 id="data-heading">Data</h2>
+
+                    <div class="field" style="margin-top:18px">
+                        <span class="label">Network</span>
+                        <div class="choice-row" role="radiogroup" aria-label="Network" data-network-group></div>
+                    </div>
+
+                    <div class="field">
+                        <label for="d-phone">Phone number</label>
+                        <input class="input" id="d-phone" data-input="dphone" type="tel" inputmode="numeric"
+                               maxlength="11" autocomplete="tel" placeholder="08024156932">
+                        <p class="field-error" data-error="dphone" hidden></p>
+                    </div>
+
+                    <div class="field">
+                        <span class="label">Plan</span>
+                        <div class="plan-list" role="radiogroup" aria-label="Data plan" data-plans></div>
+                        <p class="field-error" data-error="damount" hidden></p>
+                    </div>
+
+                    <div class="money-foot">
+                        <a class="btn btn-quiet" href="dashboard.html">Cancel</a>
+                        <button class="btn btn-primary" type="button" data-review>
+                            <span>Review payment</span><i data-lucide="arrow-right"></i>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Bills ------------------------------------------------------>
+                <section class="money-form" data-service-panel="bill" hidden aria-labelledby="bill-heading">
+                    <h2 id="bill-heading">Pay a bill</h2>
+
+                    <div class="field" style="margin-top:18px">
+                        <label for="b-biller">Biller</label>
+                        <select class="input" id="b-biller"></select>
+                    </div>
+
+                    <div class="field">
+                        <label for="b-customer"><span data-b-customer-label>Smartcard number</span></label>
+                        <input class="input" id="b-customer" type="text" inputmode="numeric"
+                               maxlength="16" autocomplete="off" placeholder="Enter the number on the bill">
+                    </div>
+
+                    <div class="field">
+                        <span class="label">Package</span>
+                        <div class="plan-list" role="radiogroup" aria-label="Package" data-packages></div>
+                        <p class="field-error" data-error="bamount" hidden></p>
+                    </div>
+
+                    <div class="money-foot">
+                        <a class="btn btn-quiet" href="dashboard.html">Cancel</a>
+                        <button class="btn btn-primary" type="button" data-review>
+                            <span>Review payment</span><i data-lucide="arrow-right"></i>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Betting ---------------------------------------------------->
+                <section class="money-form" data-service-panel="betting" hidden aria-labelledby="betting-heading">
+                    <h2 id="betting-heading">Fund a betting wallet</h2>
+
+                    <div class="field" style="margin-top:18px">
+                        <label for="g-provider">Provider</label>
+                        <select class="input" id="g-provider"></select>
+                    </div>
+
+                    <div class="field">
+                        <label for="g-customer">Customer ID</label>
+                        <input class="input" id="g-customer" data-input="gcustomer" type="text"
+                               autocomplete="off" placeholder="Your account ID at the provider">
+                        <p class="field-error" data-error="gcustomer" hidden></p>
+                    </div>
+
+                    <div class="field">
+                        <label for="g-amount">Amount</label>
+                        <div class="input-prefix">
+                            <span>₦</span>
+                            <input id="g-amount" data-input="gamount" type="text" inputmode="decimal"
+                                   autocomplete="off" placeholder="0.00">
+                        </div>
+                        <p class="field-error" data-error="gamount" hidden></p>
+                    </div>
+
+                    <div class="money-foot">
+                        <a class="btn btn-quiet" href="dashboard.html">Cancel</a>
+                        <button class="btn btn-primary" type="button" data-review>
+                            <span>Review payment</span><i data-lucide="arrow-right"></i>
+                        </button>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Review ---------------------------------------------------------->
+            <section class="money-form" data-step="review" hidden aria-labelledby="service-review-title">
+                <h2 id="service-review-title" data-review-title>Review payment</h2>
+                <dl class="review" data-review-rows></dl>
+                <div class="money-foot">
+                    <button class="btn btn-quiet" type="button" data-edit>Edit details</button>
+                    <button class="btn btn-primary" type="button" data-confirm>Pay from wallet</button>
+                </div>
+            </section>
+
+            <!-- Receipt --------------------------------------------------------->
+            <section class="receipt" data-step="receipt" hidden aria-labelledby="service-receipt-title">
+                <div class="receipt-top">
+                    <div>
+                        <div class="receipt-mark" data-receipt-mark><i data-lucide="check"></i></div>
+                        <h2 id="service-receipt-title" data-receipt-title>Payment successful</h2>
+                        <p class="receipt-sub" data-receipt-sub></p>
+                    </div>
+                </div>
+
+                <p class="receipt-amount"><span class="cur">₦</span><span data-receipt-amount>0.00</span></p>
+
+                <dl class="review receipt-details" data-receipt-rows></dl>
+
+                <div class="receipt-actions">
+                    <a class="btn btn-primary" href="dashboard.html">Back to overview</a>
+                    <button class="btn btn-outline" type="button" data-print>
+                        <i data-lucide="printer"></i><span>Save receipt</span>
+                    </button>
+                    <button class="btn btn-quiet" type="button" data-new>New payment</button>
+                </div>
+            </section>
+
+            <aside class="summary" data-summary aria-label="Payment summary"></aside>
+        </div>
+    </main>
+</div>
+
+<div class="scrim" hidden></div>
+
+</body>
+</html>

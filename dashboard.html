@@ -3,157 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="dashboard.css">
-    <script src="beeapp.js" defer></script>
-    <title>beeapp Dashboard</title>
+    <title>Overview · beeapp</title>
+    <meta name="description" content="Your beeapp wallet balance, payments and recent activity.">
+    <link rel="icon" type="image/png" href="chidi logo.png" sizes="32x32">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/app.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/core.js" defer></script>
+    <script src="js/banks.js" defer></script>
+    <script src="js/shell.js" defer></script>
+    <script src="js/receipt.js" defer></script>
+    <script src="js/ledger.js" defer></script>
+    <script src="js/overview.js" defer></script>
 </head>
 <body>
-    <main class="dashboard-shell">
-        <header class="topbar">
-            <a class="brand-mark" href="dashboard.html">beeapp</a>
-            <nav aria-label="Dashboard navigation">
-                <a href="#services">Services</a>
-                <a href="#transactions">Activity</a>
-                <button class="profile-button" type="button" aria-label="Show or hide your name" data-lucide="user"></button>
-            </nav>
+
+<div class="mobile-bar">
+    <a href="dashboard.html">beeapp</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="sidebar" aria-label="Open navigation">
+        <i data-lucide="menu"></i>
+    </button>
+</div>
+
+<div class="app">
+    <aside class="sidebar" id="sidebar">
+        <div class="brand"><a href="dashboard.html">beeapp</a></div>
+        <nav class="nav" aria-label="Main">
+            <a class="nav-item" href="dashboard.html" aria-current="page"><i data-lucide="house" aria-hidden="true"></i><span>Overview</span></a>
+            <a class="nav-item" href="wallet.html?mode=transfer"><i data-lucide="arrow-left-right"></i><span>Transfer</span></a>
+            <a class="nav-item" href="wallet.html?mode=withdraw"><i data-lucide="banknote"></i><span>Withdraw</span></a>
+            <a class="nav-item" href="services.html"><i data-lucide="layout-grid"></i><span>Services</span></a>
+            <a class="nav-item" href="transactions.html"><i data-lucide="receipt-text"></i><span>Transactions</span></a>
+        </nav>
+        <div class="side-foot">
+            <p class="sf-name" data-profile-name></p>
+            <p class="sf-meta" data-profile-handle></p>
+            <a class="sf-out" href="index.html" data-signout><i data-lucide="log-out"></i><span>Sign out</span></a>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="view-head">
+            <div>
+                <h1>Overview</h1>
+            </div>
         </header>
 
-        <section class="greetings">
+        <section class="account-strip" aria-label="Wallet account">
             <div>
-                <h3>Welcome back,</h3>
-                <h2 class="user-name"></h2>
-                <button class="username-btn" type="button">Show name</button>
-            </div>
-            <div class="time-date" aria-label="Current local time and date">
-                <div class="clock-heading">
-                    <span class="clock-icon" data-lucide="clock-3" aria-hidden="true"></span>
-                    <span>Local time</span>
+                <p class="field-label">Available balance</p>
+                <div class="balance-line">
+                    <p class="balance"><span class="cur">₦</span><span data-balance-value>0.00</span></p>
+                    <button class="icon-btn" type="button" data-balance-toggle aria-label="Hide balance" aria-pressed="false">
+                        <i data-lucide="eye"></i>
+                    </button>
                 </div>
-                <p class="time-stamp"></p>
-                <p class="date-stamp"></p>
+                <p class="pending" data-pending-row>
+                    <i data-lucide="clock-3" aria-hidden="true"></i>
+                    <span>Pending</span>
+                    <b data-pending>₦0.00</b>
+                </p>
+            </div>
+
+            <div class="strip-right">
+                <p class="wallet-id">
+                    <span>Wallet <span class="num" data-wallet-number></span></span>
+                    <button class="icon-btn" type="button" data-copy-wallet aria-label="Copy wallet number">
+                        <i data-lucide="copy"></i>
+                    </button>
+                </p>
+                <div class="strip-actions">
+                    <a class="btn btn-primary" href="wallet.html?mode=deposit">
+                        <i data-lucide="plus"></i><span>Deposit</span>
+                    </a>
+                    <a class="btn btn-outline" href="wallet.html?mode=transfer">
+                        <i data-lucide="arrow-left-right"></i><span>Transfer</span>
+                    </a>
+                    <a class="btn btn-outline" href="wallet.html?mode=withdraw">
+                        <i data-lucide="banknote"></i><span>Withdraw</span>
+                    </a>
+                </div>
             </div>
         </section>
 
-        <section class="balance-card" aria-labelledby="balance-title">
-            <div class="balance-head">
-                <div>
-                    <h3 id="balance-title">Wallet balance</h3>
-                    <p class="balance-amount" data-wallet-balance>₦ 39,344,984.56</p>
-                    <span class="beetag">beetag: <span class="user-name"></span></span>
-                </div>
+        <section class="section" aria-labelledby="services-title">
+            <div class="section-head">
+                <h2 id="services-title">Services</h2>
+                <a class="btn-link" href="services.html">All services</a>
             </div>
-            <div class="balance-footer" id="funds">
-                <a class="wallet-action wallet-action-primary" href="wallet.html?mode=deposit">+ Deposit</a>
-                <a class="wallet-action" href="wallet.html?mode=withdraw">− Withdraw</a>
-                <button class="wallet-action" id="gift-user-button" type="button">Gift a user</button>
+            <div class="service-row">
+                <a class="service-tile" href="services.html?service=airtime">
+                    <i data-lucide="smartphone"></i><span>Airtime</span>
+                </a>
+                <a class="service-tile" href="services.html?service=data">
+                    <i data-lucide="wifi"></i><span>Data</span>
+                </a>
+                <a class="service-tile" href="services.html?service=bill">
+                    <i data-lucide="zap"></i><span>Bills</span>
+                </a>
+                <a class="service-tile" href="services.html?service=betting">
+                    <i data-lucide="dice-5"></i><span>Betting</span>
+                </a>
             </div>
         </section>
 
-        <div class="dashboard-grid">
-            <section id="services" class="services-section" aria-labelledby="services-title">
-                <div class="section-heading">
-                    <h3 id="services-title">Everyday services</h3>
-                    <a href="#services">View all</a>
-                </div>
-                <div class="services-grid">
-                    <button class="service-tile" type="button" data-service="Airtime">
-                        <span class="service-icon" data-lucide="phone"></span>
-                        <p>Airtime</p>
-                    </button>
-                    <button class="service-tile" type="button" data-service="Pay Bills">
-                        <span class="service-icon" data-lucide="credit-card"></span>
-                        <p>Pay Bills</p>
-                    </button>
-                    <button class="service-tile" type="button" data-service="Data">
-                        <span class="service-icon" data-lucide="wifi"></span>
-                        <p>Data</p>
-                    </button>
-                    <button class="service-tile" type="button" data-service="Flights">
-                        <span class="service-icon" data-lucide="plane"></span>
-                        <p>Flights</p>
-                    </button>
-                    <button class="service-tile" type="button" data-service="Gift Cards">
-                        <span class="service-icon" data-lucide="gift"></span>
-                        <p>Gift Cards</p>
-                    </button>
-                    <button class="service-tile" type="button" data-service="Betting">
-                        <span class="service-icon" data-lucide="spade"></span>
-                        <p>Betting</p>
-                    </button>
-                </div>
-            </section>
+        <section class="section" aria-labelledby="activity-title">
+            <div class="section-head">
+                <h2 id="activity-title">Recent activity</h2>
+            </div>
 
-            <section id="transactions" class="transactions" aria-labelledby="transactions-title">
-                <h3 id="transactions-title">Recent activity</h3>
-                <ul class="transaction-list">
-                    <li class="transaction-item">
-                        <span class="transaction-icon">+</span>
-                        <div class="transaction-copy">
-                            <strong>Wallet Deposit</strong>
-                            <span>Aug 19 · Bank transfer</span>
-                        </div>
-                        <strong class="transaction-amount">+₦3,000,000</strong>
-                    </li>
-                    <li class="transaction-item">
-                        <span class="transaction-icon">-</span>
-                        <div class="transaction-copy">
-                            <strong>Funded Sportybet</strong>
-                            <span>Aug 17 · beeapp</span>
-                        </div>
-                        <strong class="transaction-amount">-₦10,000</strong>
-                    </li>
-                    <li class="transaction-item">
-                        <span class="transaction-icon">-</span>
-                        <div class="transaction-copy">
-                            <strong>Airtel Airtime</strong>
-                            <span>Aug 4 · beeapp</span>
-                        </div>
-                        <strong class="transaction-amount">-₦7,000</strong>
-                    </li>
-                    <li class="transaction-item">
-                        <span class="transaction-icon">+</span>         
-                        <div class="transaction-copy">
-                            <strong>Wallet Withdrawal</strong>
-                            <span>Aug 1 · USDT</span>
-                        </div>
-                        <strong class="transaction-amount">-₦1,000,000</strong>
-                    </li>
-                </ul>
-            </section>
-        </div>
-
+            <div class="ledger">
+                <div class="ledger-head" aria-hidden="true">
+                    <span>Transaction</span>
+                    <span>Date</span>
+                    <span>Status</span>
+                    <span>Amount</span>
+                </div>
+                <div data-recent-rows></div>
+                <div class="ledger-foot">
+                    <a class="btn-link" href="transactions.html"><span>View all transactions</span><i data-lucide="arrow-right"></i></a>
+                    <span class="foot-count" data-recent-count></span>
+                </div>
+            </div>
+        </section>
     </main>
+</div>
 
-    <dialog class="gift-dialog" id="gift-dialog" aria-labelledby="gift-title">
-        <form id="gift-form">
-            <div class="dialog-heading">
-                <div>
-                    <p class="eyebrow">Virtual only</p>
-                    <h2 id="gift-title">Send a gift</h2>
-                </div>
-                <button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button>
-            </div>
-            <p class="dialog-note">This gift updates your local wallet.</p>
-            <label class="form-field" for="gift-recipient">Recipient</label>
-            <input id="gift-recipient" name="recipient" type="text" autocomplete="off" placeholder="Name or beetag" required>
-            <label class="form-field" for="gift-amount">Gift amount</label>
-            <div class="amount-input"><span>₦</span><input id="gift-amount" name="amount" type="number" min="1" step="0.01" required></div>
-            <label class="form-field" for="gift-message">Message <span>(optional)</span></label>
-            <textarea id="gift-message" name="message" rows="2" maxlength="120" placeholder="Add a short note"></textarea>
-            <p class="form-feedback" id="gift-feedback" role="status" aria-live="polite"></p>
-            <div class="dialog-actions">
-                <button class="quiet-button" type="button" data-close-dialog>Cancel</button>
-                <button class="solid-button" type="submit">Send virtual gift</button>
-            </div>
-        </form>
-    </dialog>
-
-<script src="https://unpkg.com/lucide@latest"></script>
-
-    <script>
-        lucide.createIcons();
-    </script>
-
+<div class="scrim" hidden></div>
 
 </body>
 </html>
